@@ -1,0 +1,148 @@
+Chapter 1: Intro to Development
+Introduction:
+    - Webpages and Websites (Can have multiple Webpages)
+    - Cascading Style Sheets, HyperText Markup Language, JavaScript
+    - Web Browser - sends requests to server and retrieves and displays output from server
+    http://www.example.com/index.html
+      |           |           |
+    Protocol      |          File Path
+                Domain 
+
+Web Hosting:
+1. Shared hosting: Physical Server -> Web Server Service - 1:m Websites
+    -Best for small websites for small visitors. Practice environment. 
+2. VPS: Runs on hardware server, each VPS has fixed resources and each website won't be impacted by the others.
+3. Cloud hosting: Hosted on cloud environment. If a server fails, program gets moved to a new one
+
+IP Addresses - IP Version 4 and 6 are the most common nowadays
+IPv4 - 192.0.2.235
+IPv6 - 4527:0a00:1567:0200:ff00:0042:8329
+IP Packet - contains Destination and Source IPs
+Data Transmission - IP Packets have headers and payloads
+
+What can go wrong?
+Out of order, damage, corrupted, or lost
+
+Protocols within Payload
+TCP - Transmission Control Protocol
+    - Solves all issues at a cost of delay: sends data that must be in order like text and images
+UDP - User Datagram Protocol
+    - Solves corrupt packet issue, used for sending data that can tolerate some loss like voice calls or live video streaming.
+
+Introduction to HTTPS (Secure HTTP):
+HypterText Transfer Protocol -> Request-response
+    Request: Method, path, version, headers
+    GET, POST, PUT, DELETE
+    versions 1.1 and 2.0 are most used versions of HTTP
+
+Status Codes: Informational, Successful, Redirection, Client Error, Server Error
+Examples: 100 Continue, 200 OK, 301 MOVED PERMANENTLY, 400 Bad request, 401 no login, 403, 404 not found, 500 Internal Server Error
+
+HTTPS -> Encrypts HTTP before request is sent with private key, retrieval has the only way to decrypt it 
+
+Other Internet Protocols:
+DHCP - Dynamic Host Configuration Protocol -> assigns IP Addresses
+DNS - Domain Name System Protocol -> server that contains domain names and respective IP Addresses
+IMAP - Internet Messsage Access Protocol -> How devices can download and manage info on servers that store your data, like emails
+STMP - Simple Mail Transfer Protocol -> IMAP is more used for recieving emails but SMTP sends them on an SMTP server
+POP - Post Office Protocol -> Older protocol used to download emails to an email client. POP deletes emails on server once downloaded to local device.
+FTP - File Transfer Protocol -> Allows to list send recieve and delete files on server. Needs FTP Server and FTP Client on machine
+SSH - Secure Shell Procol -> Allows you to connect to a SSH server running on a server to perform commands on remote cpu. All data encrypted.
+SFTP - Secure File Transfer Protocol -> SSH File Transfer Protocol transfers files securely unlike FTP where third party can Access
+
+Big difference between website and web app is website is more informational, web app has way more interactivity like UberEats
+
+Libraries vs Framework:
+Libraries are reusable pieces of code that can be used by application. Carpenter analogy -> using pre-built hammer to build chair
+Frameworks provide structure to build with. Carpenter analogy -> using blueprint to build chair
+
+Framworks can use many libraries. Framework is opionated, libraries are not. 
+Frameworks have time saving, structure, best practices but can have constraints, compatability issues.
+Libraries require being selected, but can replace old libraries. 
+
+APIs and Services -> 
+Application Program Interfaces -> Bridge between systems (can be called middleware)
+Browser or Web APIs (DOM API turns HTML into tree of nodes for JS Objects, or Geolocation API)
+
+REST - Representational State Transfer
+Sensor-Based APIs -> IoT
+
+Intro to DOM:
+Document Object Model -> Browser creates DOM to represent the HTML objects. 
+    - DOM has series of objects representing HTML elements. Creates a node tree essentially where each node is an element in the HTML document.
+    - Biggest reason is to allow JavaScript to identify and interact with HTML elements. 
+
+Bootstrap:
+
+Breakpoints: Triggers in bootsrap for how layout adapts to certain resolutions
+sm - 576px wide
+md - 768px wide
+lg - 992px wide
+xl - 1200px wide
+xxl - 1400px wide
+extra small is default class -> bootstrap is made for mobile (these are called in-fixes)
+^
+Add to class names
+
+Examples of modifiers:
+primary, secondary, success, info, light, dark, warning, danger > div alert modifiers
+Primary - blue
+Danger - red
+
+Bootstrap grid:
+Uses 12 column grid system and can be fluid or fixed.
+
+React: 
+-It is NOT an MVC (Model-View-Controller) framework. 
+- Library for building composable UIs, encouraging the creation of reusable components which present dynamically changing data. 
+- When components are initialized, the render method is called, generating a lightweight representation of your view. A string of markup is produced and injected into 
+the document. Whenever data changes, the render method is called again. The diff of the return value and the previous call to render generates the minimal set 
+of changes to the DOM.
+
+How React Works:
+- React computes its own virtual DOM. 
+- Virtual DOM is continuously updated, and if any changes are seen between virtual dom and browser dom, then the browser dom will be updated. This is 
+called reconciliation. 
+
+Step 1: The virtual DOM is updated.
+
+Step 2: The virtual DOM is compared to the previous version of the virtual DOM and checks which elements have changed.
+
+Step 3: The changed elements are updated in the browser DOM.
+
+Step 4: The displayed webpage updates to match the browser DOM.
+
+The Fiber Architecture allows React to incrementally render the web page. What this means is that instead of immediately 
+updating the browser DOM with all virtual DOM changes, React can spread the update over time. But what does "over time" mean?
+
+Imagine a really long web page in the web browser. If the user scrolls to the bottom, the top of the web page is no longer visible. 
+The user then clicks a button on the bottom of the web page that updates some text on the top of the web page.
+
+But the top of the page isn’t visible. Therefore, why update it immediately?
+
+Perhaps there is text currently displayed on the bottom of the page that also updates when the button is clicked. Wouldn’t that be a higher priority 
+to update than the non-visible text?
+
+This is the principle of the React Fiber Architecture. React can optimize when and where updates occur to the browser DOM to significantly 
+improve application performance and responsiveness to user input. Think of it as a priority system. The highest priority changes, the elements 
+visible to the user, are updated first. While lower priority changes, the elements not currently displayed, are updated later.
+
+Component Hierarchy:
+
+Root Component (App Component)
+|
+NewItemBar
+|
+ShoppingList
+        |
+        ShoppingItem
+        |
+        ShoppingItem
+        |
+        ShoppingItem
+
+App Componenet is the entire webpage. 
+
+React alternatives: lodash, luxon, jest
+
+Module 4
