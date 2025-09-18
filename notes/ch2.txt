@@ -1,35 +1,52 @@
-Chapter 2 - Programming with JavaScript
+Chapter 2 – Programming with JavaScript
 
-Introduction to JavaScript:
+## Introduction to JavaScript
 
-- I did not know about adding %c between the first character and " in a console log to trigger a
-second argument:
-console.log("%cHello, World", "color: blue; font-size: 40px");
+- JavaScript is a versatile, high-level programming language primarily used for web development.
+- You can style console output in the browser using `%c` in `console.log`. For example:
+  ```js
+  console.log("%cHello, World", "color: blue; font-size: 40px");
+  ```
+  The `%c` placeholder applies the provided CSS styles to the text.
 
-Data Types:
+## Data Types
 
-7 Primitive Types: string, number, boolean, null, undefined, and symbol.
-Big Int and Symbol 
+JavaScript has **7 primitive data types**:
+- `string`
+- `number`
+- `boolean`
+- `null`
+- `undefined`
+- `symbol`
+- `bigint`
 
-History of JavaScript
-- Built in only 10 days in 1995 by Brendan Eich, tasked with building a simple scripting
-language to be used in version 2 of Netscape browser. 
-- Initially called LiveScript, but changed to JavaScript due to Java's popularity (no relation)
-* Netscape made a deal with ECMA (European Computer Manufacturers Association) to draft the 
-specification of JS, in 1997 first edition of ECMAScript specification was published.
-- Issued as ECMA-262 standard (updated 12 times, first was in 1997).
-- JS exists as an implementation known as a JavaScript engine. You write JS code to "talk to" a JS
-engine like a browser. 
-- JS interacts with other parts of the browser using Browser APIs. 
--2009 changed JS for allowing the JS Engine to be used as a stand-alone entity, able to use JS outside of a browser, as a separate program on cmd line, or as a server-side environment. Created by Ryan Dahl
+> Note: `BigInt` and `Symbol` were added in later versions of JavaScript.
 
-switch(var) {
-    case ifVarEquals:
-        code here
-        break;
-    case ifVar...
-        code here
-        break;
-    default:
-        ...
+## Brief History of JavaScript
+
+- Created in just 10 days in 1995 by Brendan Eich for Netscape Navigator 2.
+- Originally named **LiveScript**, but renamed to **JavaScript** to capitalize on Java's popularity (despite being unrelated).
+- In 1997, Netscape worked with ECMA (European Computer Manufacturers Association) to standardize the language, resulting in the first edition of the **ECMAScript** specification (ECMA-262).
+- The ECMAScript standard has been updated many times since 1997.
+- JavaScript code runs on a **JavaScript engine** (e.g., V8 in Chrome, SpiderMonkey in Firefox).
+- JavaScript interacts with browsers via **Browser APIs** (e.g., DOM, Fetch API).
+- In 2009, **Node.js** (created by Ryan Dahl) enabled JavaScript to run outside the browser, allowing server-side and command-line applications.
+
+## Example: `switch` Statement Syntax
+switch (expression) {
+  case value1:
+    // code to execute if expression === value1
+    break;
+  case value2:
+    // code to execute if expression === value2
+    break;
+  case value3:
+    // code to execute if expression === value3
+    break;
+  default:
+    // code to execute if no cases match
+    break;
 }
+
+
+
