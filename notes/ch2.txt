@@ -49,4 +49,95 @@ switch (expression) {
 }
 
 
+## Building Blocks of a Program:
 
+ # Functions
+function functionName() {
+//    body
+};
+// calling function
+functionName();
+
+# Arrays
+var arrayName = ["item1", "item2", "etc"];
+                 arrayName[0] , ...[1], ...[2]
+
+# Objects:
+- Groups of data
+var objectName = {
+    k: v;
+    k2: v2;
+    trait: value;
+    key: value;
+}
+object.k = "new assignment"
+object.method1 = function() {
+    // code here
+}
+
+Object literal syntax = {}
+Ex. var obj = {};
+Can use dot notation to add new properties to object:
+obj.newTrait = 1;
+obj[0] == obj["newTrait"] == 1
+
+Arrays are objects. They have built-in properties and methods such as push() (adds) and pop() (removes last item from array)
+
+# Math Object Cheat Sheet
+Math.PI 
+Math.E 
+Math.LN2
+Math.ceil(), Math.floor(), Math.round(), 
+Math.trunc() - removes decimal keeps integer
+
+Math.pow(2,3) -> number 2 to the power of 3 = 8
+Math.sqrt(16) -> 4
+Math.cbrt(8) -> 2
+Math.abs(-5) -> 5
+Math.log(x), Math.log2(x), Math.log10(x)
+
+Math.random() -> generates number betwwen 0 and 0.99;
+var decimal = Math.random()
+
+# String cheat Sheet
+.length; .charAt(); .concat('').concat('')
+.indexOf('specified char) and .lastIndexOf()
+.split('split char') ex: "ho-ho-ho".split("-") -> ['ho', 'ho', 'ho']
+.toLowerCase; .toUpperCase();
+
+# TypeOf
+var test = typeof('What is this')
+console.log(test) = string
+
+Error object has name, message, stack
+try {
+    let a = b; //ReferenceError
+} catch (error) {
+    console.log(error.name)
+    console.log(error.message)
+    console.log(error.stack)
+}
+
+# Best Practices for Handling Errors
+Use Try-Catch Blocks: To handle predictable runtime errors gracefully
+
+Validate Inputs: Helps prevent invalid operations by checking inputs
+
+Use Specific Error Types: Throw custom errors where necessary, for clarity
+
+# Null, Undefined, Empty
+undefined
+    What it is: A primitive value that indicates a variable has been declared but not assigned a value
+    Type: "undefined"
+    When it occurs:
+    Variable declared but not initialized
+    Function parameter not provided
+    Object property that doesn't exist
+    Function with no return statement
+null
+    What it is: A primitive value that represents the intentional absence of any object value
+    Type: "object" (this is a JavaScript quirk!)
+    When it occurs: Explicitly set by the programmer to indicate "no value"
+Empty Values
+    What they are: Values that exist but contain no meaningful content
+    Examples: "", [], {}, 0
