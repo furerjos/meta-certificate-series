@@ -1,4 +1,4 @@
-Chapter 2 – Programming with JavaScript
+# Chapter 2 – Programming with JavaScript
 
 ## Introduction to JavaScript
 
@@ -20,7 +20,7 @@ JavaScript has **7 primitive data types**:
 - `symbol`
 - `bigint`
 
-> Note: `BigInt` and `Symbol` were added in later versions of JavaScript.
+> **Note:** `BigInt` and `Symbol` were added in later versions of JavaScript.
 
 ## Brief History of JavaScript
 
@@ -32,7 +32,9 @@ JavaScript has **7 primitive data types**:
 - JavaScript interacts with browsers via **Browser APIs** (e.g., DOM, Fetch API).
 - In 2009, **Node.js** (created by Ryan Dahl) enabled JavaScript to run outside the browser, allowing server-side and command-line applications.
 
-## Example: `switch` Statement Syntax
+## Switch Statement Syntax
+
+```js
 switch (expression) {
   case value1:
     // code to execute if expression === value1
@@ -47,103 +49,174 @@ switch (expression) {
     // code to execute if no cases match
     break;
 }
+```
 
+## Building Blocks of a Program
 
-## Building Blocks of a Program:
+### Functions
 
- # Functions
+```js
 function functionName() {
-//    body
-};
+    // body
+}
+
 // calling function
 functionName();
+```
 
-# Arrays
+### Arrays
+
+```js
 var arrayName = ["item1", "item2", "etc"];
-                 arrayName[0] , ...[1], ...[2]
+// Accessing elements: arrayName[0], arrayName[1], arrayName[2]
+```
 
-# Objects:
+### Objects
+
 - Groups of data
+
+```js
 var objectName = {
-    k: v;
-    k2: v2;
-    trait: value;
-    key: value;
+    k: v,
+    k2: v2,
+    trait: value,
+    key: value
 }
-object.k = "new assignment"
+
+// Adding properties
+object.k = "new assignment";
 object.method1 = function() {
     // code here
 }
+```
 
-Object literal syntax = {}
-Ex. var obj = {};
-Can use dot notation to add new properties to object:
+**Object literal syntax:**
+```js
+var obj = {};
+// Can use dot notation to add new properties to object:
 obj.newTrait = 1;
 obj[0] == obj["newTrait"] == 1
+```
 
-Arrays are objects. They have built-in properties and methods such as push() (adds) and pop() (removes last item from array)
+> **Note:** Arrays are objects. They have built-in properties and methods such as `push()` (adds) and `pop()` (removes last item from array).
 
-# Math Object Cheat Sheet
-Math.PI 
-Math.E 
-Math.LN2
-Math.ceil(), Math.floor(), Math.round(), 
-Math.trunc() - removes decimal keeps integer
+## Math Object Cheat Sheet
 
-Math.pow(2,3) -> number 2 to the power of 3 = 8
-Math.sqrt(16) -> 4
-Math.cbrt(8) -> 2
-Math.abs(-5) -> 5
-Math.log(x), Math.log2(x), Math.log10(x)
+### Constants
+- `Math.PI`
+- `Math.E`
+- `Math.LN2`
 
-Math.random() -> generates number betwwen 0 and 0.99;
-var decimal = Math.random()
+### Rounding Methods
+- `Math.ceil()`
+- `Math.floor()`
+- `Math.round()`
+- `Math.trunc()` - removes decimal, keeps integer
 
-# String cheat Sheet
-.length; .charAt(); .concat('').concat('')
-.indexOf('specified char) and .lastIndexOf()
-.split('split char') ex: "ho-ho-ho".split("-") -> ['ho', 'ho', 'ho']
-.toLowerCase; .toUpperCase();
+### Mathematical Operations
+- `Math.pow(2,3)` → number 2 to the power of 3 = 8
+- `Math.sqrt(16)` → 4
+- `Math.cbrt(8)` → 2
+- `Math.abs(-5)` → 5
+- `Math.log(x)`, `Math.log2(x)`, `Math.log10(x)`
+- `Math.random()` → generates number between 0 and 0.99
 
-# TypeOf
-var test = typeof('What is this')
-console.log(test) = string
+```js
+var decimal = Math.random();
+```
 
-Error object has name, message, stack
+## String Methods Cheat Sheet
+
+- `.length`
+- `.charAt()`
+- `.concat('')`
+- `.indexOf('specified char')` and `.lastIndexOf()`
+- `.split('split char')` - ex: `"ho-ho-ho".split("-")` → `['ho', 'ho', 'ho']`
+- `.toLowerCase()`
+- `.toUpperCase()`
+
+## TypeOf Operator
+
+```js
+var test = typeof('What is this');
+console.log(test); // "string"
+```
+
+## Error Handling
+
+### Error Object Properties
+Error objects have `name`, `message`, and `stack` properties:
+
+```js
 try {
-    let a = b; //ReferenceError
+    let a = b; // ReferenceError
 } catch (error) {
-    console.log(error.name)
-    console.log(error.message)
-    console.log(error.stack)
+    console.log(error.name);
+    console.log(error.message);
+    console.log(error.stack);
 }
+```
 
-# Best Practices for Handling Errors
-Use Try-Catch Blocks: To handle predictable runtime errors gracefully
+### Best Practices for Handling Errors
 
-Validate Inputs: Helps prevent invalid operations by checking inputs
+1. **Use Try-Catch Blocks:** To handle predictable runtime errors gracefully
+2. **Validate Inputs:** Helps prevent invalid operations by checking inputs
+3. **Use Specific Error Types:** Throw custom errors where necessary, for clarity
 
-Use Specific Error Types: Throw custom errors where necessary, for clarity
+## Null, Undefined, and Empty Values
 
-# Null, Undefined, Empty
-undefined
-    What it is: A primitive value that indicates a variable has been declared but not assigned a value
-    Type: "undefined"
-    When it occurs:
-    Variable declared but not initialized
-    Function parameter not provided
-    Object property that doesn't exist
-    Function with no return statement
-null
-    What it is: A primitive value that represents the intentional absence of any object value
-    Type: "object" (this is a JavaScript quirk!)
-    When it occurs: Explicitly set by the programmer to indicate "no value"
-Empty Values
-    What they are: Values that exist but contain no meaningful content
-    Examples: "", [], {}, 0
+### `undefined`
+- **What it is:** A primitive value that indicates a variable has been declared but not assigned a value
+- **Type:** `"undefined"`
+- **When it occurs:**
+  - Variable declared but not initialized
+  - Function parameter not provided
+  - Object property that doesn't exist
+  - Function with no return statement
+
+### `null`
+- **What it is:** A primitive value that represents the intentional absence of any object value
+- **Type:** `"object"` (this is a JavaScript quirk!)
+- **When it occurs:** Explicitly set by the programmer to indicate "no value"
+
+### Empty Values
+- **What they are:** Values that exist but contain no meaningful content
+- **Examples:** `""`, `[]`, `{}`, `0`
 
 ## Programming Paradigms
 
-Paradigms are styles of coding. 
-    - Functional Programming (FP) -> functionality and data are separated, data is only passed into functions when needed to compute something. 
-    - 
+Paradigms are styles of coding:
+
+- **Functional Programming (FP):** Functionality and data are separated, data is only passed into functions when needed to compute something.
+- **Object Oriented Programming (OOP):** Data and functionality are grouped as properties and methods inside objects.
+- **First-class functions:** Functions in JS are "first-class citizens", meaning functions in JS are another value that we can pass to other functions, save in variables, and return from other functions. Functions are essentially values.
+
+### Example: First-class Functions
+
+```js
+function addTwoNums(a, b) {
+    console.log(a + b);
+}
+
+function randomNum() {
+    return Math.floor((Math.random() * 10) + 1);
+}
+
+function specificNum() { 
+    return 42; 
+}
+
+var useRandom = true;
+var getNumber;
+
+if(useRandom) {
+    getNumber = randomNum;
+} else {
+    getNumber = specificNum;
+}
+
+addTwoNums(getNumber(), getNumber());
+```
+
+- **Pure vs Impure Functions: **Pure functions return the same result with the same values everytime, impure functions like Math.random() return different calues each time it is called.
+
