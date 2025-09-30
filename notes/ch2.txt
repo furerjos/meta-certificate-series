@@ -141,3 +141,9 @@ null
 Empty Values
     What they are: Values that exist but contain no meaningful content
     Examples: "", [], {}, 0
+
+## Programming Paradigms
+
+Paradigms are styles of coding. 
+    - Functional Programming (FP) -> functionality and data are separated, data is only passed into functions when needed to compute something. 
+    - 
