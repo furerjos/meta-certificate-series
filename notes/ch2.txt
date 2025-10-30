@@ -220,3 +220,346 @@ addTwoNums(getNumber(), getNumber());
 
 - **Pure vs Impure Functions: **Pure functions return the same result with the same values everytime, impure functions like Math.random() return different calues each time it is called.
 
+### Benefits of OOP
+
+- Modular code, flexible, and reusable
+
+class Animal { /*Class code here */ }
+var myDog = Object.create(Animal)
+or...
+var myDog = new Animal()
+
+Principles - Inheritance, Polymorphism, Abstraction, Encapsulation
+
+Inheritance: 
+- There is a base class of something, that may have subclasses that inherit properties from the base class, and those subclasses can have their own subclasses. This concept in inheritance.
+continuing the Animal example:
+class Animal { ... }
+class Mammal extends Animal { ... }
+class Elephant extends Mammal { ... }
+
+Encapsulation:
+- Simply put, encapsulation has to do with making a code implementation "hidden" from other users, you don't need to know how the code works to use it. Think of when you use a library, you don't see the underlying funtionality when you call on a method. 
+"abc".toUpperCase(); <- I don't need to know how toUpperCase() is made to use it
+
+Abstraction:
+- All about writing code in a generalized way. Extracting the CONCEPT of what you're trying to do, rather than dealing with a specific instance or manifestation of said concept. 
+- I like to think of interfaces and classes as a good example to explain abstraction and inheritance. 
+
+Polymorphism:
+- Multiple forms, things can change value. 
+
+Super: Grabs methods from parent
+ex:
+class Bird {
+    useWings() {
+        console.log("Flying!");
+    }
+}
+class Eagle extends Bird {
+    useWings() {
+        super.useWings();
+        console.log("Barely flapping!");
+    }
+}
+class Penguin extends Bird {
+    useWings() {
+        console.log("Diving!");
+    }
+}
+var baldEagle = new Eagle();
+var kingPenguin = new Penguin();
+baldEagle.useWings(); // "Flying! Barely flapping!"
+kingPenguin.useWings(); // "Diving!"
+
+### Constructors
+
+- Constructors allow creating instances of built-in native objects appended with the keyword new
+new Date();
+Some don't use new such as Math();
+new Math() -> Throws Uncaught TypeError: Math is not a Constructors
+**Math() doesn't need to be instantiated, nor does it need to hold any data, it performs its methods when needed statically.
+
+Same goes true for String, Number, and Boolean:
+
+let apple = new String("apple");          let crow = "crow"
+apple; // --> String {"apple"}            crow; // "crow"
+
+apple is of object type String, crow here is a primitive value of a string literal
+
+Instead of new Object, you should stick to the object literal syntax: {}.
+
+A RegExp object is another built-in object in JavaScript. It's used to pattern-match strings using what's known as "Regular Expressions". Regular Expressions exist in many languages, not just JavaScript.
+
+In JavaScript, you can build an instance of the RegExp constructor using new RegExp(). 
+
+Alternatively, you can use a pattern literal instead of RegExp. Here's an example of using /d/ as a pattern literal, passed-in as an argument to the match method on a string.
+"abcd".match(/d/); // ['d', index: 3, input: 'abcd', groups: undefined]
+"abcd".match(/a/); // ['a', index: 0, input: 'abcd', groups: undefined]
+
+other common constructor examples: new Date();
+new Error();
+new Map();
+new Promise();
+new Set();
+new WeakSet();
+new WeakMap();
+
+### Creating classes
+
+keyword class className {
+  constructor(parameters that need storage) {
+
+  }
+}
+
+class Train {
+  constructor(color, lightsOn) {
+      this.color = color;
+      this.lightsOn = lightsOn;
+  }
+}
+
+var myFirstTrain = new Train('red', false);
+
+You can also add methods to classes and they will be shared with all future instance objects of said class:
+class Train {
+  constructor(color, lightsOn) {
+    this.color = color;
+    this.lightsOn = lightsOn;
+  }
+  toggleLights() {
+    this.lightsOn = !this.lightsOn;
+  }
+  lightsStatus() {
+    console.log('Lights on?', this.lightsOn);
+  }
+  getSelf() {
+    console.log(this);
+  }
+  getPrototype() {
+    var proto = Object.getPrototypeOf(this);
+    console.log(proto);
+  }
+}
+
+var trainEx = new Train('red', false);
+train4.toggleLights(); // undefined
+train4.lightsStatus(); // Lights on? true
+train4.getSelf(); // Train {color: 'red', lightsOn: true}
+train4.getPrototype(); // {constructor: f, toggleLights: f, lightsStatus: f, getSelf: f, getPrototype: f}
+
+But! You can also implement polymorphism by inheriting base class and overriding inherited behavior. 
+
+class HighSpeedTrain extends Train {
+  constructor(passengers, highSpeedOn, color, lightsOn) {
+    super(color, lightsOn);
+    this.passengers = passengers;
+    this.highSpeedOn = highSpeedOn;
+  }
+  toggleHighSpeed() {
+    this.highSpeedOn = !this.highSpeedOn;
+    console.log('High speed status:', this.highSpeedOn);
+  }
+  // And here is overriding
+  toggleLights() {
+    super.toggleLights();
+    super.lightsStatus();
+    console.log('Lights are 100% operational.');
+  }
+}
+
+### Default parameters
+- Useful ES6 Feature allows setting default params inside function definitions.
+Ex:
+function noDefaultParams(number) {
+  console.log('Result: '. number*number)
+}
+noDefaultParams(); //Result: NaN
+
+function withDefaultParams(number=10) {
+  console.log('Result: '. number*number)
+}
+
+withDefaultParams(); // 'Result: 100'
+
+lass NoDefaultParams {
+    constructor(num1, num2, num3, string1, bool1) {
+        this.num1 = num1;
+        this.num2 = num2;
+        this.num3 = num3;
+        this.string1 = string1;
+        this.bool1 = bool1;
+    }
+    calculate() {
+        if(this.bool1) {
+            console.log(this.string1, this.num1 + this.num2 + this.num3);
+            return;
+        }
+        return "The value of bool1 is incorrect"
+    }
+}
+
+^^ This requires careful parameters to work properly, but by adding in default parameters for string1 and bool1, this can improve the developer experience. Kind of like Excel functions that have optional inputs.
+
+class WithDefaultParams {
+    constructor(num1 = 1, num2 = 2, num3 = 3, string1 = "Result:", bool1 = true) {
+        this.num1 = num1;
+        this.num2 = num2;
+        this.num3 = num3;
+        this.string1 = string1;
+        this.bool1 = bool1;
+    }
+    calculate() {
+        if(this.bool1) {
+            console.log(this.string1, this.num1 + this.num2 + this.num3);
+            return;
+        }
+        return "The value of bool1 is incorrect"
+    }
+}
+var better = new WithDefaultParams();
+better.calculate(); // Result: 6
+
+### Designing an OO Program:
+Let's say we are building a program, we have to first know what objects we are dealing with. Let's make an OO Program with Animals.
+Hierarchy: 
+                      Animal
+                   /          \
+               Cat          Bird
+          /         \          \
+    HouseCat          Tiger      Parrot
+
+class Animal {
+
+}
+
+class Cat extends Animal {
+
+}
+
+class Bird extends Animal {
+
+}
+
+and so on...
+
+### Formatting text
+
+- Destructuring -> Copying an item which becomes independent of an original (like extracting a folder into a copy)
+
+Example: 
+
+let {PI} = Math; // 3.1415926535...
+let {pi} = Math; // undefined
+
+PI === Math.PI; //true
+PI = 1;
+PI === Math.PI // false
+
+### For of
+Important to note objects are NOT iterable. 
+const car = {
+  speed: 100;
+  color: 'blue';
+}
+for(prop of car) {
+  console.log(prop);
+}
+// ^ returns TypeError: car is not iterable
+
+const colors = ['red', 'blue', 'white'];
+for (var color of colors) {
+  console.log(color);
+}
+// red
+// orange
+// yellow
+
+Object.keys(), Object.values(), Object.entries()
+console.log(Object.keys(car)); // ['speed', 'color']
+console.log(Object.entries(car)); // [ ['speed', 100], ['color', 'blue'] ]
+
+Iterating over objects looks like: 
+var clothingItem = {
+    price: 50,
+    color: 'beige',
+    material: 'cotton',
+    season: 'autumn'
+}
+
+for( const key of Object.keys(clothingItem) ) {
+    console.log(key, ":", clothingItem[key])
+}
+console: 
+price : 50
+color : beige
+material : cotton
+season : autumn
+
+### Data Structures
+
+## Arrays: 
+forEach(), filter(), map()
+forEach() iterates over an array at an index. Syntax generally is forEach(arrayName, optional index)
+
+Examples:
+const fruits = ['kiwi','mango','apple','pear'];
+function appendIndex(fruit, index) {
+    console.log(`${index}. ${fruit}`)
+}
+fruits.forEach(appendIndex);
+
+OR more directly:
+
+const veggies = ['onion', 'garlic', 'potato'];
+veggies.forEach( function(veggie, index) {
+    console.log(`${index}. ${veggie}`);
+});
+
+filter() -> returns items in array based on a test
+const nums = [1, 2, 3, 10, 20];
+nums.filter( function(num) {
+  return num > 9;
+  console.log(result)
+})
+// [10, 20]
+
+map() -> maps each array item to another array.
+
+const nums = [10,20,30,40,50];
+nums.map(function(num) {
+  return num/10
+});
+// [1,2,3,4,5]
+
+## Map
+new Map();
+let bestBoxers = new Map();
+bestBoxers.set(1, "The Champion");
+bestBoxers.set(2, "The Runner-up");
+bestBoxers.set(3, "The third place");
+
+console.log(bestBoxers); // Map(3) {1 => 'The Champion', 2 => 'The Runner-up', 3 => 'The third place'}
+
+bestBoxers.get(1); // 'The Champion'
+
+## Set
+new Set(); //UNIQUE VALUES only
+const repetitiveNums = [0,0,0,1,1,1,2,2,2,3,3,3];
+const uniqueNums = new Set(repetitiveNums);
+console.log(uniqueNums); // {0, 1, 2, 3}
+
+Other data structures in JavaScript
+Besides the built-in data structures in JavaScript, it's possible to build non-native, custom data structures. These data structures come built-in natively in some other programming languages. 
+
+Some more advanced data structures that have not been covered include: 
+
+Queues 
+
+Linked lists (singly-linked and doubly-linked) 
+
+Trees 
+
+Graphs  
+
