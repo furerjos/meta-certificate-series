@@ -563,3 +563,37 @@ Trees
 
 Graphs  
 
+### Using Spread and Rest Operators
+- Spread operator -> Add new members without using push()
+  - Convert string to array
+  - Copy either object or array into a separate object
+- Rest operator -> Can gather multiple elements int oa single array or object. Useful for handling remaining items in Destructuring or collecting arguments in functions.
+
+const [first, ...rest] = [1, 2, 3, 4]
+console.log(rest); // [2,3,4]
+
+or
+
+function sum(...numbers) {
+  return numbers.reduce((total,num) => total + num, 0_;)
+}
+console.log(sum(1,2,3)); // 6
+
+- Spread operators expand arrays, objects, or strings and is used for concatenation, copying or passing arguments
+- Rest operators gather elements into a single array or object
+- Used in Destructuring or collecting arguments
+
+* Adding without push()
+let fruits = ['apple', 'banana'];
+fruits = [...fruits, 'pear'];
+
+* String to array
+const greeting = 'hello';
+const arrOfChars = [...greeting]
+
+* Copying object into separate Object
+const car1 = {
+    speed: 200,
+    color: 'yellow'
+}
+const car2 = {...car1};
