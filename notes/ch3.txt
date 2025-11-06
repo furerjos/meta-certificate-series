@@ -1,0 +1,83 @@
+### Version Control
+NOTE: Probably won't be too many notes since, as you can see from this repo, I already know a lot about Version Control. Most of this course is review, but the certificate is good to have. 
+
+If anyone does decide to read this repo, I'll put here my experience with Agile and Version Control at Fiserv. 
+
+I worked as a Professional II SWE at Fiserv 2023-2024. Unfortunately was laid off. Fiserv did not follow conventional tech standards (could be why the stock is 50% less than what it was when I worked there now).
+- The head of development was the head of QA on their main onboarding application for their 3,000+ banks and credit union clients. He also led Agile, but because of how busy he was, I often filled in when I could. 
+
+Agile is a system for teams to follow when working on projects. A time management/ team management system essentially. 
+    - Sprints -> 2 week periods
+    - Stories -> assigned points based on its size and difficulty in fibonacci numbers (1pts, 3pts, 5pts, etc)
+    - "Ceremonies" are the different style meetings in the Agile system. 
+        - SPRINT PLANNING -> Beginning of sprints, the Scrum Master (person who leads ceremonies) will assign stories and points for stories to developers, and they are expected to complete those stories within the sprint, sometimes 2 sprints. This can always be revisited of course.
+        - DAILY STANDUP / SCRUM -> your daily meeting with the team as you update your story progress (success or blockers encountered during development/testing) with the team and Scrum Master. Scrum Master is tasked with knowing and guiding the status and success of each sprint. If one person's blocker (blocker is something that prevents a story's completion) is lack of access, the Scrum Master should help that developer get that access ASAP because it is delaying the sprint. "Hey, goodmorning. Is the Scrum Master not joining the Scrum call today? Who will fill in for them?"
+        - BACKLOG GROOMING / REFINEMENT: Preparing stories but not assigning yet. 
+        - SPRINT REVIEW: end of sprint when you demo the completed work and testing. In my experience, this was when I would provide a demo and complete testing to our business/product teams and gain their approval for the change release management process.
+        - SPRINT RETROSPECTIVE: This meeting is often skipped but very important, where the team reflects on areas of success and areas for improvement with the team's operation. "We communicated our blockers and helped resolve them for each other very well, our communication is improving. However, we also need to improve our responsiveness to our external friends in product better. Joe Schmoe requested the status of our security vulnerabilities two days ago, we need to improve on this response time."
+
+We used Github at Fiserv, and the backend and frontend were split into different repositories. Check the git-cheat-sheet PDF for more. I prefer doing all Github commands in the terminal, it is faster and cleaner in my opinion than the GitHub UI. 
+
+### CVCS (Centralized Version Control System)
+- Single central repository that all developers connect to
+- Examples: Subversion (SVN), Perforce, CVS
+- Architecture:
+    - Central server stores the complete version history
+    - Developers check out files from the central server
+    - All commits go directly to the central server
+- Characteristics:
+    - Requires network connection to commit changes
+    - Single point of failure (if central server goes down, work stops)
+    - All history stored in one location
+    - Simpler mental model (one source of truth)
+- Workflow:
+    - Developer checks out code from central server
+    - Makes changes locally
+    - Commits directly to central server (requires network)
+- Advantages:
+    - Simple to understand and use
+    - Centralized administration and access control
+    - Easy to see what everyone is working on
+- Disadvantages:
+    - Requires constant network connection
+    - Slower operations (network latency)
+    - Single point of failure
+    - Limited offline capabilities
+    - Branching and merging can be complex
+
+### DCVS (Distributed Version Control System)
+- Each developer has a complete copy of the repository (including full history)
+- Examples: Git, Mercurial, Bazaar
+- Architecture:
+    - No single central repository required (though often used for collaboration)
+    - Each clone is a full repository with complete history
+    - Developers can work completely offline
+- Characteristics:
+    - No network required for most operations (commits, branching, merging)
+    - Multiple copies of the repository exist
+    - Can work with multiple remotes
+    - Fast operations (local filesystem)
+- Workflow:
+    - Developer clones repository (gets full copy)
+    - Makes changes and commits locally (no network needed)
+    - Can push/pull to/from remote repositories when ready
+    - Can work with multiple remotes (origin, upstream, etc.)
+- Advantages:
+    - Works offline (commit, branch, merge without network)
+    - Fast operations (local filesystem)
+    - No single point of failure
+    - Flexible workflows (can work with multiple remotes)
+    - Excellent branching and merging capabilities
+    - Each developer has full backup of project history
+- Disadvantages:
+    - More complex mental model (multiple copies)
+    - Steeper learning curve
+    - Requires more disk space (full history on each machine)
+    - Can be confusing with multiple remotes
+
+### Key Differences Summary
+- CVCS: One central server, network required, simpler but less flexible
+- DCVS: Multiple copies, works offline, more complex but more powerful
+- Modern development heavily favors DCVS (Git is the industry standard)
+- Git (DCVS) is what we use at Fiserv and is the most popular VCS today
+
