@@ -597,3 +597,43 @@ const car1 = {
     color: 'yellow'
 }
 const car2 = {...car1};
+
+### DOM
+- DOM Tree Structure -> HTML file is mapped out in tree structure with nested objects for different parts of the page.
+- DOM -> Browsers build DOM or Model for every webpage when downloading as a JS Object
+
+### Moving Data Around the Web Reading
+- Data is currently being sent across millions of websites for free or paid. This process of sending and receiving data requires a standardized format.
+- Around 2001, Douglas Crockford came up with a data interchange format based on JS Objects, he called it JSON!
+- Before JSON was XML (Extensible Markup Language), but it required more characters than the data it was sending, and it was not very interoperable with JS.
+- JSON dominates because it is essentially a stringified JS object and is lightweight, AND it is easily handled by JS because it is essentially JS. 
+* All JSON is JavaScript, but not all JavaScript is JSON.
+- Only a subset of values in JavaScript can be properly stringified to JSON and parsed from a JavaScript object into a JSON string.
+  - primitive values: strings, numbers, booleans, null
+  - complex values: objects and arrays (no functions!)
+  - Objects have double-quoted strings for all keys
+  - Properties are comma-delimited both in JSON objects and in JSON arrays, just like in regular JavaScript code
+  - String properties must be surrounded in double quotes.
+
+  ### Other JS Environments
+  - At first, JS was a front end only language until 2009, dev Ryan Dao decided to use Google's V8 JS Engine and make it work on the server. This created Node.js
+  - Node.js is a stand-alone environment, and can run in multiple settings like a CMD line, desktop app or web backend. 
+  - Node.js has NPM package manager which allows devs to use libraries and frameworks as Node modules.
+  - after starting a node project, it creates a package.json which holds instructions on all modules. There are around 11 million modules in Node including react, webpack, angular core 
+
+
+  ### Testing
+  - Types of testing: E2E, Integration, Unit 
+    -E2E -> imitates how a user interacts with the app. Take the longest to make and run (WebDriverJS, Cypress, Protractor)
+    -Integration -> Testing how separate parts of apps work together. 
+    -Unit -> Testing smallest parts of code in isolation
+          -> Self-contained, fast to write and run
+
+  Introduction to Jest (See JS Files)
+- Jasmine, Mocha, qUnit, Karma are other JS testing libraries 
+- Jest supports code coverage
+- Mocking allows separating code from dependencies.
+  - Example: You are a frontend dev, and you finished your feature before the backend finished theirs. Instead of waiting, you can mock a backend dataflow that actually comes from the client
+  - Snapshot testing verifies there are no regressions in DOM after code changes 
+
+  

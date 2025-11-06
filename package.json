@@ -1,0 +1,23 @@
+{
+  "name": "meta-frontend-cert",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ch2-lab.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/furerjos/meta-certificate-series.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/furerjos/meta-certificate-series/issues"
+  },
+  "homepage": "https://github.com/furerjos/meta-certificate-series#readme",
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}
