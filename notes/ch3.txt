@@ -1,5 +1,5 @@
 ### Version Control
-NOTE: Probably won't be too many notes since, as you can see from this repo, I already know a lot about Version Control. Most of this course is review, but the certificate is good to have. 
+NOTE: As you can see from this repo, I already know a lot about Version Control. Most of this course is review, but the certificate is good to have. 
 
 If anyone does decide to read this repo, I'll put here my experience with Agile and Version Control at Fiserv. 
 
@@ -13,7 +13,7 @@ Agile is a system for teams to follow when working on projects. A time managemen
         - SPRINT PLANNING -> Beginning of sprints, the Scrum Master (person who leads ceremonies) will assign stories and points for stories to developers, and they are expected to complete those stories within the sprint, sometimes 2 sprints. This can always be revisited of course.
         - DAILY STANDUP / SCRUM -> your daily meeting with the team as you update your story progress (success or blockers encountered during development/testing) with the team and Scrum Master. Scrum Master is tasked with knowing and guiding the status and success of each sprint. If one person's blocker (blocker is something that prevents a story's completion) is lack of access, the Scrum Master should help that developer get that access ASAP because it is delaying the sprint. "Hey, goodmorning. Is the Scrum Master not joining the Scrum call today? Who will fill in for them?"
         - BACKLOG GROOMING / REFINEMENT: Preparing stories but not assigning yet. 
-        - SPRINT REVIEW: end of sprint when you demo the completed work and testing. In my experience, this was when I would provide a demo and complete testing to our business/product teams and gain their approval for the change release management process.
+        - SPRINT REVIEW: end of sprint when you demo the completed work and testing. In my experience, this was when I would provide a demo and complete testing to our business/product teams and gain their approval for the change release management process. Usually after this, will peer review and code merges happen.
         - SPRINT RETROSPECTIVE: This meeting is often skipped but very important, where the team reflects on areas of success and areas for improvement with the team's operation. "We communicated our blockers and helped resolve them for each other very well, our communication is improving. However, we also need to improve our responsiveness to our external friends in product better. Joe Schmoe requested the status of our security vulnerabilities two days ago, we need to improve on this response time."
 
 We used Github at Fiserv, and the backend and frontend were split into different repositories. Check the git-cheat-sheet PDF for more. I prefer doing all Github commands in the terminal, it is faster and cleaner in my opinion than the GitHub UI. 
@@ -80,4 +80,98 @@ We used Github at Fiserv, and the backend and frontend were split into different
 - DCVS: Multiple copies, works offline, more complex but more powerful
 - Modern development heavily favors DCVS (Git is the industry standard)
 - Git (DCVS) is what we use at Fiserv and is the most popular VCS today
+
+### History of Version Control
+- Basic definition of VC -> a system that records changes to a file or set of files over time so that you can access specific versions later. 
+- Before the internet, in the 1980s version control began.
+    - Concurrent Versions System (CVS) was developed in 1986 by Walter F. Tichy and publicly released in 1990. 
+    - CVS stores information about every file in a folder structure, including name of file, location in folder, who last modified, and when it was last modified. 
+    - Did not include integrity checks so data can corrupt, the system would accept changes despite any errors, and it was designed mainly for text files, not images or videos. 
+- After CVS came Subversion (SVN) -> CollabNet developed in 2000 and solved many of CVS' issues including checking for integrity, better versioning for binary files (media), and became popular in open-source communities with free hosting offered by Google and SourceForge. 
+    - SVN used a centralized VCS model, so all operations had to be done using a centralized server. Development depended on the server's speed and health (even though we still have this with cloud. If AWS US East 1 goes down, many get impacted).
+- In 2005, two projects began: Mercurial and Git. Both were created in response to an event involving the Linux kernel development. 
+    - Previously, the Linux kernel used a proprietary VCS called BitKeeper, originally a free license but the free license was revoked in 2005, sparking controversy -> Leading to Mercurial and Git. 
+
+### Certificate's notes on VC in Professional SWE:
+Vitalities are:
+    1. Workflow: Proper workflow acts as the traffic light system in a city, without it chaos ensues. For instance, if two developers code the same file and push simultaneously to the master branch, or if a junior developer has access to important code, that is risky and not standard without proper workflow. 
+        - Example is requiring peer review before any code pushes. 
+    2. Continuous Integration (CI): automates integration of code from multiple developers into a single main stream, reducing merge conflicts and is widespread in test-driven development strategies. CI often automatically compiles a project and tests every code change / build stability to prevent regressions in functionality.
+    3. Continuous Delivery (CD): automates deployment via building the application, running tests, and packaging it for a production-environment deployment. Ensures app is always in a deployable state, even during code changes. Still requires manual approval.
+    4. Continuous Deployment (CD as well): automates Continuous DELIVERY's manual approval step by deploying to a staging environment, checking and validating the build, then promoting the changes to the live production environment. 
+
+### Staging vs. Production Environments
+
+## Development Environment Flow:
+- Teams typically use multiple environments: developer environment → UAT/QA environment → staging environment → production
+- Purpose: Find potential issues before they reach production. More testing environments = fewer bugs in production
+- Each environment serves as a safety net before code reaches end users
+
+## Staging Environment:
+- Definition: Should mimic production environment as closely as possible
+- Purpose: Test code in an environment that matches production to catch issues before deployment
+- Key principle: The closer staging is to production, the more accurate your testing will be
+- Architecture: Should cover all areas including database and required services
+- Use cases:
+    - Testing new features with feature flags (verify they work and can be toggled on/off)
+    - QA teams verify new features, configuration changes, and software updates/patches
+    - Types of testing: Unit testing, Integration testing, Performance testing (performance testing usually done out of hours in production if needed)
+    - Testing data migrations: Use production snapshots to test migration scripts, allows rollback if issues occur
+    - Testing configuration changes: Spot potential issues or bottlenecks before production
+    - Stakeholder demos: Allow QA and stakeholders to see and use new features as pre-trial
+- Cost considerations: May not be exact replication (e.g., 10 VMs in production vs 4 in staging) - same architecture but different performance is acceptable
+
+## Production Environment:
+- Definition: Live environment that end users interact with
+- Critical importance: Any issues here directly impact real users and business
+- Code requirements: All code should be tested and verified in staging before production deployment
+- Risks of production issues:
+    - Downtime: Customer-facing downtime = revenue loss (e.g., e-commerce site with broken payment process = lost sales)
+    - Vulnerabilities: Cyber-security risks from unpatched software or missed critical updates
+    - Reputation: Downtime or broken features damage company reputation and lose potential customers
+    - User confidence: Issues don't instill confidence in end users
+
+## Why Each is Important:
+- Staging: Safety net that catches bugs, allows testing without risk, enables rollback, protects production
+- Production: Where real business happens - must be stable, secure, and reliable. Issues here have real-world consequences (revenue loss, reputation damage, customer loss)
+
+## Best Practice: Never deploy to production without thorough testing in staging. Staging is your last line of defense before code reaches real users.
+
+### Command Line: 
+Basics: 
+cd - change directory
+touch - creates file
+mkdir - creates folder
+history - self-explanatory
+mv - move -> mv target_file target_location
+
+# Pipes ( | )
+- You can use pipes to combine commands. Example:
+> ls // file1.txt file2.txt 
+> cat file1.txt // shows text from file1.txt
+> wc file1.txt -w // 180 (wordcount)
+> wc file2.txt -w // 100 
+
+cat file1.txt file2.txt | wc -w // 280
+
+# Redirection
+- Basic workflow for any linkux command is it takes input and gives output (keyboard is input, output is the screen). 
+3 Types of I/O: input, output, error (all numbered in Linux)
+0 - stdin
+1 - stdout
+2 - stderr
+
+cat -> takes in an input and outputs a file
+
+cat > input.txt
+allows you to add text, press enter then Ctrl+D to end file. 
+cat < input.txt -> displays file 
+
+stdout is handled by a > sign
+
+Every linux command output gets sent to a stdout file. Example:
+
+ls -l > output.txt 
+
+2 > or 2>&1 will output the error or error and output.
 
