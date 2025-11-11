@@ -140,6 +140,8 @@ Vitalities are:
 ### Command Line: 
 Basics: 
 cd - change directory
+ls - list items 
+ls -la -> list all including hidden items
 touch - creates file
 mkdir - creates folder
 history - self-explanatory
@@ -175,3 +177,23 @@ ls -l > output.txt
 
 2 > or 2>&1 will output the error or error and output.
 
+grep -> global regular expression print
+by default grep searches for partial results, but  can use flags to be specific.
+grep textYoureSearchingFor fileName 
+ex. grep Sam names.txt -> returns list of text starting with Sam 
+grep -w -> exact match
+grep -i -> include 
+for looking across directories for specific files:
+ls /bin | grep zip
+
+### Moving on to Git 
+- Github is a cloud based hosting service for managing code repos. 
+Working directory ------- Staging Area -------- Committed Files --------- Remote repository
+        | git add ->          |  git commit ->         |        git push ->         |
+
+## Git Add and Commit 
+- git status ( displays any changes and what branch )
+Two commands for making branch:
+1. git branch (creates branch)
+2. git checkout -B branch/name (creates branch and moves you to said branch)
+- branches are isolated versions until a pull request is made to merge branch into the main branch
